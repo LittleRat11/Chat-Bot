@@ -1,6 +1,7 @@
 const messageList = document.querySelector(".chat-box");
 const input = document.querySelector(".chat-input input");
 const sendBtn = document.querySelector(".chat-input button");
+const date = new Date();
 
 const responses = {
     Greeting: [
@@ -26,6 +27,15 @@ const responses = {
         "What do you call a boomerang that doesn't come back? A stick.",
         "What did one wall say to the other well? I'll meet you at the corner",
         "Why do yo seagulls fly over the sea? Because if they flew over the bay,they'd be baegels"
+    ],
+    Morning: [
+        "Good Morning"
+    ],
+    Night: [
+        "Good Night! Have A Sweet Dream..."
+    ],
+    Time: [
+        `Time is ${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}`
     ]
 };
 
@@ -53,7 +63,14 @@ sendBtn.addEventListener("click", () => {
             intent = "Farewell"
         } else if (inputText.includes("jokes") || inputText.includes("joke")) {
             intent = "Joke"
+        } else if (inputText.includes("morning") || inputText.includes("good morning") || inputText.includes("mornee")) {
+            intent = "Morning"
+        } else if (inputText.includes("night") || inputText.includes("good night")) {
+            intent = "Night"
+        } else if (inputText.includes("time") || inputText.includes("hour") || inputText.includes("minute") || inputText.includes("second")) {
+            intent = "Time"
         }
+
         input.value = "";
 
         setTimeout(() => {
